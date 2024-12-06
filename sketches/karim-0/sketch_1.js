@@ -371,8 +371,14 @@ function handleInteraction(dt) {
   if (maxDistance > 200) {
     interactivePoints.forEach((point) => {
       console.log(offsetX);
-      if (Math.abs(point.x)> canvas.width * 10000) {
-        finish();}
+      if (
+        Math.abs(point.x) > canvas.width * 10000 ||
+        Math.abs(point.y) > canvas.height * 10000
+      ) {
+        setTimeout(() => {
+          finish();
+        }, 1500);
+      }
 
       point.x += offsetX * 0.1; // Apply the offset
 
